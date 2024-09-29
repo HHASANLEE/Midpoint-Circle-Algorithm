@@ -1,39 +1,36 @@
 import matplotlib.pyplot as plt
 
-def draw_circle(x_center, y_center, radius):
-    # Function to plot the points
-    def plot_circle_points(x_center, y_center, x, y):
-        plt.plot(x_center + x, y_center + y, 'bo' )  # First Octant
-        plt.plot(x_center - x, y_center + y, 'bo' )  # Second Octant
-        plt.plot(x_center + x, y_center - y, 'bo' )  # Eighth Octant
-        plt.plot(x_center - x, y_center - y, 'bo' )  # Seventh Octant
-        plt.plot(x_center + y, y_center + x, 'bo' )  # Fourth Octant
-        plt.plot(x_center - y, y_center + x, 'bo' )  # Third Octant
-        plt.plot(x_center + y, y_center - x, 'bo' )  # Fifth Octant
-        plt.plot(x_center - y, y_center - x, 'bo' )  # Sixth Octant
+def DrawCircle(cx, cy, r):
+    def plot_circle_points(cx, cy, x, y):
+        plt.plot(cx + x, cy + y, 'bo' )  
+        plt.plot(cx - x, cy + y, 'bo' )  
+        plt.plot(cx + x, cy - y, 'bo' ) 
+        plt.plot(cx - x, cy - y, 'bo' )  
+        plt.plot(cx + y, cy + x, 'bo' )  
+        plt.plot(cx - y, cy + x, 'bo' )  
+        plt.plot(cx + y, cy - x, 'bo' )  
+        plt.plot(cx - y, cy - x, 'bo' ) 
 
-    # Starting point at (0, radius)
     x = 0
-    y = radius
-    d = 1 - radius  # Initial decision parameter
+    y = r
+    d = 1 - r
 
-    plot_circle_points(x_center, y_center, x, y)
+    plot_circle_points(cx, cy, x, y)
 
     while x < y:
         x += 1
         if d < 0:
-            d += 2 * x + 1  # Choosing E pixel
+            d += 2 * x + 1 
         else:
             y -= 1
-            d += 2 * (x - y) + 1  # Choosing SE pixel
-        plot_circle_points(x_center, y_center, x, y)
+            d += 2 * (x - y) + 1 
+        plot_circle_points(cx, cy, x, y)
 
-# Example usage:
-x_center = 0
-y_center = 0
-radius = 10
-draw_circle(x_center, y_center, radius)
+# Example :
+cx = 0
+cy = 0
+r = 10
+DrawCircle(cx, cy, r)
 
-# Display the circle
 plt.gca().set_aspect('equal', adjustable='box')
 plt.show()
